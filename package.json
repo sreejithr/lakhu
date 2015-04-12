@@ -1,0 +1,30 @@
+{
+  "name": "lakhu",
+  "version": "0.0.1",
+  "description": "SQLite wrapper for React Native",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sreejithr/lakhu.git"
+  },
+  "keywords": [
+    "react-native",
+    "reactnative",
+    "sqlite",
+    "sqlite3",
+    "ios",
+    "wrapper"
+  ],
+  "author": "Sreejith R",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sreejithr/lakhu/issues"
+  },
+  "homepage": "https://github.com/sreejithr/lakhu",
+  "dependencies": {
+    "knex": "0.7.6"
+  }
+}
