@@ -10,6 +10,7 @@
 		5E240DE61AD7FB2200026CB0 /* Lakhu.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5E240DE51AD7FB2200026CB0 /* Lakhu.h */; };
 		5E240DE81AD7FB2200026CB0 /* Lakhu.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E240DE71AD7FB2200026CB0 /* Lakhu.m */; };
 		5E240DEE1AD7FB2200026CB0 /* libLakhu.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E240DE21AD7FB2200026CB0 /* libLakhu.a */; };
+		5E240DFD1AD7FBB200026CB0 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E240DFC1AD7FBB200026CB0 /* libsqlite3.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,6 +42,7 @@
 		5E240DE71AD7FB2200026CB0 /* Lakhu.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Lakhu.m; sourceTree = "<group>"; };
 		5E240DED1AD7FB2200026CB0 /* LakhuTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LakhuTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E240DF31AD7FB2200026CB0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5E240DFC1AD7FBB200026CB0 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,6 +50,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E240DFD1AD7FBB200026CB0 /* libsqlite3.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +68,8 @@
 		5E240DD91AD7FB2200026CB0 = {
 			isa = PBXGroup;
 			children = (
+				5E240E1F1AD9719700026CB0 /* Indexing Headers */,
+				5E240DFC1AD7FBB200026CB0 /* libsqlite3.dylib */,
 				5E240DE41AD7FB2200026CB0 /* Lakhu */,
 				5E240DF11AD7FB2200026CB0 /* LakhuTests */,
 				5E240DE31AD7FB2200026CB0 /* Products */,
@@ -103,6 +108,13 @@
 				5E240DF31AD7FB2200026CB0 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		5E240E1F1AD9719700026CB0 /* Indexing Headers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Indexing Headers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -292,18 +304,32 @@
 		5E240DF71AD7FB2200026CB0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+				);
+				LIBRARY_SEARCH_PATHS = "";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/../react-native/React/**";
 			};
 			name = Debug;
 		};
 		5E240DF81AD7FB2200026CB0 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+				);
+				LIBRARY_SEARCH_PATHS = "";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/../react-native/React/**";
 			};
 			name = Release;
 		};
@@ -356,6 +382,7 @@
 				5E240DF81AD7FB2200026CB0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5E240DF91AD7FB2200026CB0 /* Build configuration list for PBXNativeTarget "LakhuTests" */ = {
 			isa = XCConfigurationList;
@@ -364,6 +391,7 @@
 				5E240DFB1AD7FB2200026CB0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

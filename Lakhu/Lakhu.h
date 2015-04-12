@@ -7,7 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <sqlite3.h>
+#import "RCTBridgeModule.h"
+#import "RCTLog.h"
 
-@interface Lakhu : NSObject
+
+@interface Lakhu : NSObject <RCTBridgeModule>
+
+-(void)connect:(NSString *)name callback:(RCTResponseSenderBlock)callback;
+-(void)executeUpdateQuery:(NSString *)query withCallback:(RCTResponseSenderBlock)callback;
+-(void)executeSelectQuery:(NSString *)query withCallback:(RCTResponseSenderBlock)callback;
 
 @end
