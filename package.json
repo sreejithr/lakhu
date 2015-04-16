@@ -25,6 +25,6 @@
   },
   "homepage": "https://github.com/sreejithr/lakhu",
   "dependencies": {
-    "knex": "0.7.6"
+    "q": "^1.0"
   }
 }
