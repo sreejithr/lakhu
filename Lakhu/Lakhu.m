@@ -73,7 +73,7 @@ static sqlite3 *database = nil;
                 [rows addObject:columns];
             }
         }
-        sqlite3_reset(statement);
+        sqlite3_finalize(statement);
         callback(@[[NSNull null], rows]);
     });
 }
@@ -98,7 +98,7 @@ static sqlite3 *database = nil;
                 break;
         }
     }
-    sqlite3_reset(statement);
+    sqlite3_finalize(statement);
 }
 
 -(void)close {
