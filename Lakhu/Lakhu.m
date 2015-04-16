@@ -33,7 +33,7 @@ static sqlite3 *database = nil;
         
         if (sqlite3_open(dbPathUTF, &database) == SQLITE_OK) {
             // Success
-            callback(@[[NSNull null]]);
+            callback(@[[NSNull null], filename]);
             return;
         }
         callback(@[@"Could not open database file"]);
@@ -49,29 +49,33 @@ static sqlite3 *database = nil;
                 callback(@[@"Cannot copy db file from bundle to filesystem"]);
         }
         // Success
-        callback(@[[NSNull null]]);
+        callback(@[[NSNull null], filename]);
         return;
     }
-    callback(@[@"Could not find database file"]);
+    callback(@[@"Could not find database file", filename]);
 }
 
 -(void)executeSelectQuery:(NSString *)query withCallback:(RCTResponseSenderBlock)callback {
     RCT_EXPORT();
-    sqlite3_stmt *statement = nil;
-    NSMutableArray *rows = [[NSMutableArray alloc] init];
+    dispatch_queue_t selectQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     
-    if (sqlite3_prepare_v2(database, [query UTF8String], -1, &statement, NULL) == SQLITE_OK) {
-        while (sqlite3_step(statement) == SQLITE_ROW) {
-            NSMutableArray *columns = [[NSMutableArray alloc] init];
-            for (int i=0; i<sqlite3_column_count(statement); i++) {
-                // TODO: Infer the column type and allocate them as their corresponding type
-                [columns addObject:[[NSString alloc] initWithUTF8String:(char *)sqlite3_column_text(statement, i)]];
+    dispatch_async(selectQueue, ^{
+        sqlite3_stmt *statement = nil;
+        NSMutableArray *rows = [[NSMutableArray alloc] init];
+
+        if (sqlite3_prepare_v2(database, [query UTF8String], -1, &statement, NULL) == SQLITE_OK) {
+            while (sqlite3_step(statement) == SQLITE_ROW) {
+                NSMutableArray *columns = [[NSMutableArray alloc] init];
+                for (int i=0; i<sqlite3_column_count(statement); i++) {
+                    // TODO: Infer the column type and allocate them as their corresponding type
+                    [columns addObject:[[NSString alloc] initWithUTF8String:(char *)sqlite3_column_text(statement, i)]];
+                }
+                [rows addObject:columns];
             }
-            [rows addObject:columns];
         }
-    }
-    sqlite3_reset(statement);
-    callback(@[[NSNull null], rows]);
+        sqlite3_reset(statement);
+        callback(@[[NSNull null], rows]);
+    });
 }
 
 -(void)executeUpdateQuery:(NSString *)query withCallback:(RCTResponseSenderBlock)callback {
