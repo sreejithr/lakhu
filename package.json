@@ -4,7 +4,8 @@
   "description": "SQLite wrapper for React Native",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "echo \"Thanks for installing\""
   },
   "repository": {
     "type": "git",
